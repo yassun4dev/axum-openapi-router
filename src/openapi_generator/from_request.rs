@@ -14,3 +14,12 @@ where
         JsonSchemaRef::<T>::json_schema(gen)
     }
 }
+
+impl<T> FromRequest for axum::extract::Query<T>
+where
+    T: JsonSchema,
+{
+    fn from_request(gen: &mut SchemaGenerator) -> Schema {
+        JsonSchemaRef::<T>::json_schema(gen)
+    }
+}
