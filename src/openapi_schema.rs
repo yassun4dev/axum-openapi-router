@@ -14,11 +14,6 @@ pub use response_object::ResponseObject;
 use serde::Serialize;
 
 #[derive(Debug, Serialize)]
-pub enum Version {
-    V3_0_3,
-}
-
-#[derive(Debug, Serialize)]
 pub struct Info {
     pub title: String,
     pub version: String,
@@ -30,9 +25,14 @@ pub struct Components {
 }
 
 #[derive(Debug, Serialize)]
-pub struct OpenApiSchema {
-    pub version: Version,
+pub struct OpenApiSchemaV3_0_3 {
     pub info: Info,
     pub paths: PathsObject,
     pub components: Components,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(tag = "version")]
+pub enum OpenApiSchema {
+    V3_0_3(OpenApiSchemaV3_0_3),
 }

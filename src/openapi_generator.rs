@@ -4,8 +4,8 @@ mod json_schema_ref;
 
 use crate::{
     openapi_schema::{
-        self, Components, MediaTypeObject, OperationObject, PathItemObject, Referenceable,
-        ResponseObject,
+        self, Components, MediaTypeObject, OpenApiSchemaV3_0_3, OperationObject, PathItemObject,
+        Referenceable, ResponseObject,
     },
     router::PathSchema,
     OpenApiSchema,
@@ -65,8 +65,7 @@ impl OpenApiGenerator {
     }
 
     pub fn generate(self) -> OpenApiSchema {
-        OpenApiSchema {
-            version: openapi_schema::Version::V3_0_3,
+        OpenApiSchema::V3_0_3(OpenApiSchemaV3_0_3 {
             paths: self.paths,
             components: Components {
                 schemas: self.generator.definitions().clone(),
@@ -75,7 +74,7 @@ impl OpenApiGenerator {
                 title: self.title,
                 version: self.version,
             },
-        }
+        })
     }
 }
 
