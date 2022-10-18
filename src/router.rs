@@ -1,14 +1,7 @@
 use std::{future::Future, marker::PhantomData};
 
 use crate::openapi_generator::{FromRequest, IntoResponse};
-use axum::{http::Method, Router as AxumRouter};
-
-use crate::OpenApiSchema;
-
-trait Router {}
-
-impl Router for AxumRouter {}
-impl Router for OpenApiSchema {}
+use axum::http::Method;
 
 pub struct PathSchema<Request, Response> {
     method: Method,
