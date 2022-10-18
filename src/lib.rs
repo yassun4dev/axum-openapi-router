@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 mod openapi_generator;
 mod openapi_schema;
 mod router;
@@ -26,7 +28,7 @@ mod test {
             name: String,
         }
 
-        async fn handler(axum::Json(body): axum::Json<RequestBody>) -> axum::Json<ResponseBody> {
+        async fn handler(axum::Json(_): axum::Json<RequestBody>) -> axum::Json<ResponseBody> {
             unimplemented!()
         }
 
